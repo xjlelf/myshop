@@ -9,5 +9,6 @@ App::uses('FrontAppController', 'Controller');
 class ShopController extends FrontAppController {
 
     public function index() {
+        $this->title = '电商主页';
     }
 }
