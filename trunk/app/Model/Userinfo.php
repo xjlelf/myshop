@@ -44,12 +44,13 @@ class Userinfo extends AppModel {
         )
     );
 
-//    /**
-//     * @param array $options
-//     * @return bool
-//     */
-//    public function beforeSave($options = array()) {
-//        $this->data['Userinfo']['pwd'] = Security::hash($this->data['Userinfo']['pwd'], null, true);
-//        return true;
-//    }
+    /**
+     * @param array $options
+     * @return bool
+     */
+    public function beforeSave($options = array()) {
+        App::uses('Security', 'Utility');
+        $this->data['Userinfo']['pwd'] = Security::hash($this->data['Userinfo']['pwd'], null, true);
+        return true;
+    }
 }
