@@ -63,11 +63,16 @@ class UsersController extends FrontAppController {
         //判断是否是表单提交和表单是否有数据
         if ($this->request->is('post') && !empty($this->request->data)) {
             if ($this->Auth->login()) {
+                $this->User->updateAll(
+                    array('User.last_login' => "'".date('Y-m-d H:i:s')."'"),
+                    array('User.id' => $this->Auth->user('id'))
+                );
                 $this->redirect(array(
                     'controller' => 'Userinfos',
                     'action' => 'index'
                 ));
             } else {
+                $this->set('errorMessage', ConstDefine::ERROR_LOGIN);
                 $this->render('login');
             }
         }

@@ -20,8 +20,8 @@
         <div class="con_right">
             <div class="pad_border">
                 <div class="user_con">
-                    <p><?php if (!empty($user)) echo $user['logid'];?> 欢迎您回到 ECSHOP！</p>
-                    <p>您的上一次登录时间: 2010-09-15 09:44:20</p>
+                    <p><?php echo $user['logid'];?> 欢迎您回到 ECSHOP！</p>
+                    <p>您的上一次登录时间: <?php echo $user['last_login'];?></p>
                     <p>您的等级是 注册用户 ,您还差 10000 积分达到 vip</p>
                     <p>您还没有通过邮件认证 点此发送认证邮件</p>
                     <div class="user_pub"><img src="/html/front/images/user_icon2.jpg" align="absmiddle" /> 用户中心公告！</div>

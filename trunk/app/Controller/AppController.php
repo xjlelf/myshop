@@ -34,4 +34,11 @@ class AppController extends Controller {
 
     /** 引用组件 */
     public $components = array('Session', 'Auth');
+
+    /**
+     * 控制器执行前执行
+     */
+    public function beforeFilter() {
+        $this->loadModel('ConstDefine');
+    }
 }

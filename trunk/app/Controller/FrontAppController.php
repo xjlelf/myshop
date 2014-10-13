@@ -17,6 +17,7 @@ class FrontAppController extends AppController {
      * 控制器执行前执行
      */
     public function beforeFilter() {
+        parent::beforeFilter();
         // 验证管理员的登录情况
         $this->__authFront();
         if ($this->Auth->user()) {

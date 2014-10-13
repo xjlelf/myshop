@@ -4,6 +4,11 @@
 		<div class="login_left">
             <div class="login_title">已经是会员，请登陆</div>
             <div class="login_form">
+                <?php if (!empty($errorMessage)) :?>
+                <div class="color2">
+                    <?php echo $errorMessage;?>
+                </div>
+                <?php endif;?>
                 <?php echo $this->form->create('User', array(
                     'url' => array(
                         'controller' => 'Users',
