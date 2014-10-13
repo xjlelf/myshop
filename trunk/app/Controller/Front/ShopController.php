@@ -10,5 +10,6 @@ class ShopController extends FrontAppController {
 
     public function index() {
         $this->title = '电商主页';
+        $this->set('is_main', true);
     }
 }

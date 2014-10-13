@@ -10,9 +10,14 @@
         <?php echo $title;?>
 	</title>
 </head>
+<?php if (isset($is_main)) :?>
 <body onload="margin_top_height(1);">
+<?php else :?>
+<body onload="margin_top_height();">
+<?php endif;?>
 <div id="wrap">
     <?php echo $this->element('header');?>
+    <?php echo $this->element('search');?>
     <?php echo $this->fetch('content'); ?>
     <?php echo $this->element('footer');?>
 </div>

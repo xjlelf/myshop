@@ -30,4 +30,21 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
+
+    /** 模型行为 */
+    public $actsAs = array('Auth');
+
+    /**
+     * 验证数据的相等性
+     *
+     * @param $data
+     * @param $key
+     * @return bool
+     */
+    public function equalTo($data, $key) {
+        if (isset($this->data[$this->alias][$key])) {
+            return $this->data[$this->alias][$key] === current($data);
+        }
+        return true;
+    }
 }

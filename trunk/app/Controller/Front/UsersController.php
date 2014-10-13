@@ -8,11 +8,38 @@ App::uses('FrontAppController', 'Controller');
  */
 class UsersController extends FrontAppController {
 
+    public $uses = array(
+        'User',
+        'Userinfo'
+    );
+
+    /**
+     * 登录页面
+     */
     public function login() {
         $this->title = '会员登录';
     }
 
+    /**
+     * 注册页面
+     */
     public function register() {
         $this->title = '会员注册';
+    }
+
+    /**
+     * 注册验证
+     */
+    public function toRegister() {
+        $this->Userinfo->create();
+        $this->Userinfo->set($this->data);
+        if ($this->Userinfo->save()) {
+            $this->redirect(array(
+                'controller' => 'Userinfos',
+                'action' => 'index'
+            ));
+        } else {
+            $this->render('register');
+        }
     }
 }
