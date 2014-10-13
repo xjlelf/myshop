@@ -40,13 +40,6 @@ class Userinfo extends AppModel {
                 'last' => true,
             )
         ),
-        'pwd' => array(
-            'notEmpty' => array(
-                'rule'    => 'notEmpty',
-                'replace' => '密码',
-                'last'    => true,
-            )
-        ),
         'confirm_pwd' => array(
             'equalTo' => array(
                 'rule' => array('equalTo', 'pwd'),
@@ -55,15 +48,6 @@ class Userinfo extends AppModel {
             )
         )
     );
-
-    /**
-     * @param array $options
-     * @return bool
-     */
-    public function beforeSave($options = array()) {
-        $this->data['Userinfo']['pwd'] = Security::hash($this->data['Userinfo']['pwd'], null, true);
-        return true;
-    }
 
     /**
      * 添加新用户
