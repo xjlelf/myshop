@@ -13,7 +13,7 @@ class Userinfo extends AppModel {
         'User' => array(
             'className' => 'User',
             'conditions' => array(
-                'User.logid' => 'Userinfo.logid'
+                'User.logid = Userinfo.logid'
             ),
             'foreignKey' => false
         )

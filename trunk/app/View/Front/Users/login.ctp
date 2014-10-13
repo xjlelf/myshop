@@ -4,14 +4,38 @@
 		<div class="login_left">
             <div class="login_title">已经是会员，请登陆</div>
             <div class="login_form">
-            	<form action="" method="post">
-  					<div class="log_txt"><span class="txt">账户名：</span><input  type="text" name="username" value="" size="24" /></div>
-  					<div class="log_pass"><span class="txt">密&nbsp;&nbsp;&nbsp;&nbsp;码：</span><input type="password" name="password" value="" size="24" /></div>
+                <?php echo $this->form->create('User', array(
+                    'url' => array(
+                        'controller' => 'Users',
+                        'action' => 'toLogin'
+                    )
+                ));?>
+  					<div class="log_txt">
+                        <span class="txt">账户名：</span>
+                        <?php echo $this->form->input('logid', array(
+                            'label' => false,
+                            'div' => false,
+                            'size' => 24
+                        ));?>
+                    </div>
+  					<div class="log_pass">
+                        <span class="txt">密&nbsp;&nbsp;&nbsp;&nbsp;码：</span>
+                        <?php echo $this->form->input('pwd', array(
+                            'type' => 'password',
+                            'label' => false,
+                            'div' => false,
+                            'size' => 24,
+                            'value' => ''
+                        ));?>
+                    </div>
                     <div class="checkbox">
                    		<input  type="checkbox" name="checkbox" id="checkbox" /> 记住我的密码
                     </div>
-                    <input type="submit" value="" name="" class="login_btn" />
-            	</form>
+                    <?php echo $this->form->submit('', array(
+                        'class' => 'login_btn',
+                        'div' => false
+                    ));?>
+                <?php echo $this->form->end();?>
             </div>
         </div>
         <div class="login_right">

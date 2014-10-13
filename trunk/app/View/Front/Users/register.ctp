@@ -131,7 +131,7 @@
                             <td colspan="2">&nbsp;</td>
                         </tr>
                     </table>
-                </form>
+                <?php echo $this->form->end();?>
             </div>
         </div>
         <div class="login_right1">

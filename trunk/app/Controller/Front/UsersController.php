@@ -8,9 +8,17 @@ App::uses('FrontAppController', 'Controller');
  */
 class UsersController extends FrontAppController {
 
+    /** 引用的模型 */
     public $uses = array(
         'User',
         'Userinfo'
+    );
+
+    /** 允许未登录的方法 */
+    public $authallow = array(
+        'register',
+        'toRegister',
+        'toLogin'
     );
 
     /**
@@ -39,5 +47,36 @@ class UsersController extends FrontAppController {
         } else {
             $this->render('register');
         }
+    }
+
+    /**
+     * 登录验证
+     */
+    public function toLogin() {
+        // 如果已登录直接跳转
+        if ($this->Auth->user()) {
+            $this->redirect(array(
+                'controller' => 'Userinfos',
+                'action' => 'index'
+            ));
+        }
+        //判断是否是表单提交和表单是否有数据
+        if ($this->request->is('post') && !empty($this->request->data)) {
+            if ($this->Auth->login()) {
+                $this->redirect(array(
+                    'controller' => 'Userinfos',
+                    'action' => 'index'
+                ));
+            } else {
+                $this->render('login');
+            }
+        }
+    }
+
+    /**
+     * 退出登录
+     */
+    public function logout() {
+        $this->redirect($this->Auth->logout());
     }
 }
