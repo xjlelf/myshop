@@ -1,4 +1,5 @@
 <?php
+App::uses('Security', 'Utility');
 
 /**
  * 用户信息模型
@@ -6,6 +7,17 @@
  * @package       app.Model
  */
 class Userinfo extends AppModel {
+
+    /** 要连的表 */
+    public $belongsTo = array(
+        'User' => array(
+            'className' => 'User',
+            'conditions' => array(
+                'User.logid' => 'Userinfo.logid'
+            ),
+            'foreignKey' => false
+        )
+    );
 
     /** 验证规则 */
     public $validate = array(
@@ -49,8 +61,32 @@ class Userinfo extends AppModel {
      * @return bool
      */
     public function beforeSave($options = array()) {
-        App::uses('Security', 'Utility');
         $this->data['Userinfo']['pwd'] = Security::hash($this->data['Userinfo']['pwd'], null, true);
         return true;
+    }
+
+    /**
+     * 添加新用户
+     *
+     * @return mixed
+     */
+    public function addNewUser($postData) {
+        $flag = false;
+        $this->begin();
+        $data['User']['logid'] = $postData['Userinfo']['logid'];
+        $data['User']['pwd'] = Security::hash($postData['Userinfo']['pwd'], null, true);
+        $this->User->create();
+        $this->User->set($data);
+        if ($this->User->save()) {
+            $this->create();
+            $this->set($postData);
+            $flag = $this->save();
+        }
+        if ($flag) {
+            $this->commit();
+        } else {
+            $this->rollback();
+        }
+        return $flag;
     }
 }

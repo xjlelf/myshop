@@ -31,9 +31,7 @@ class UsersController extends FrontAppController {
      * 注册验证
      */
     public function toRegister() {
-        $this->Userinfo->create();
-        $this->Userinfo->set($this->data);
-        if ($this->Userinfo->save()) {
+        if ($this->Userinfo->addNewUser($this->data)) {
             $this->redirect(array(
                 'controller' => 'Userinfos',
                 'action' => 'index'
