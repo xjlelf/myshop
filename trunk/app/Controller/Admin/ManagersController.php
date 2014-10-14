@@ -33,18 +33,21 @@ class ManagersController extends AdminAppController {
     public function admin_login() {
         // 如果已登录直接跳转
         if ($this->Auth->user()) {
-            $isLogin = true;
+            $this->redirect(array(
+                'controller' => 'Welcome',
+                'action' => 'index'
+            ));
         }
         //判断是否是表单提交和表单是否有数据
         if ($this->request->is('post') && !empty($this->request->data)) {
-            $this->request->data[$this->modelClass] = $this->request->data;
             if ($this->Auth->login()) {
-                $isLogin = true;
+                $this->redirect(array(
+                    'controller' => 'Welcome',
+                    'action' => 'index'
+                ));
             } else {
-                $isLogin = false;
+                $this->render('Welcome/admin_login');
             }
-            $data = array('success' => $isLogin);
-            $this->set('data', $data);
         }
     }
 
