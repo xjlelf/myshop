@@ -53,6 +53,6 @@ class AdminAppController extends AppController {
         $this->Auth->loginAction = array('controller' => 'Welcome', 'action' => 'login');
         // 取消登录成功之后自动跳转
         $this->Auth->autoRedirect  = false;
-        $this->Auth->logoutRedirect= '/';
+        $this->Auth->logoutRedirect= array('controller' => 'Welcome', 'action' => 'login');
     }
 }

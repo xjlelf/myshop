@@ -11,10 +11,10 @@ class WelcomeController extends AdminAppController {
     /**
      * 欢迎
      */
-    public function admin_index() {
-	}
+    public function admin_index() {}
 
-    public function admin_login() {
-        $this->layout = 'admin_login';
-    }
+    /**
+     * 后台登录页面
+     */
+    public function admin_login() {}
 }

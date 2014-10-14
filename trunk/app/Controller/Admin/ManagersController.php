@@ -8,24 +8,8 @@ class ManagersController extends AdminAppController {
 
     /** 允许未登录的方法 */
     public $authallow = array(
-        'admin_isLogin',
         'admin_login'
     );
-
-    /**
-     * 管理员是否登录
-     * */
-    public function admin_isLogin() {
-        if ($this->Auth->user()) {
-            $data = array(
-                'success' => true,
-                'data' => $this->Auth->user(),
-            );
-        } else {
-            $data = array('success' => false);
-        }
-        $this->set('data', $data);
-    }
 
     /**
      * 管理员登录
@@ -46,7 +30,7 @@ class ManagersController extends AdminAppController {
                     'action' => 'index'
                 ));
             } else {
-                $this->render('Welcome/admin_login');
+                $this->render('/Welcome/admin_login');
             }
         }
     }
