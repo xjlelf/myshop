@@ -20,6 +20,9 @@ class AdminAppController extends AppController {
         parent::beforeFilter();
         // 验证管理员的登录情况
         $this->__authAdmin();
+        if ($this->Auth->user()) {
+            $this->set('admin', $this->Auth->user());
+        }
     }
 
     /**
